@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class _0512021338 : DbMigration
+    public partial class _081220210726 : DbMigration
     {
         public override void Up()
         {
