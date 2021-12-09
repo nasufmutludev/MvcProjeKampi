@@ -5,28 +5,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 
 namespace BusinessLayer.Concrete
 {
-    public class CategoryManager
+    public class CategoryManager:ICategoryService
     {
-        GenericRepository<Category> repo=new GenericRepository<Category>();
+        private ICategoryDal _categoryDal;
 
-        public List<Category> GetAll()
+        public CategoryManager(ICategoryDal categoryDal)
         {
-            return repo.List();
+            _categoryDal = categoryDal;
         }
 
-        public void Add(Category category) 
+        public List<Category> GetCategoryList()
         {
-            if (category.CategoryName == "" || category.CategoryName.Length <= 3 || category.CategoryDescription == "" || category.CategoryName.Length >= 51)
-            {
-                //Hata Mesajı
-            }
-            else
-            {
-                repo.Insert(category);
-            }
+            return _categoryDal.List();
+        }
+
+        public void Add(Category category)
+        {
+            _categoryDal.Insert(category);
+        }
+
+        public void Update(Category category)
+        {
+            _categoryDal.Update(category);
+        }
+
+        public void Delete(int categoryId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

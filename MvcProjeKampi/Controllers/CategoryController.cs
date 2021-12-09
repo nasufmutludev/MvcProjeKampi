@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataAccessLayer.EntityFramework;
 
 namespace MvcProjeKampi.Controllers
 {
     public class CategoryController : Controller
     {
         // GET: Category
-        CategoryManager cm = new CategoryManager();
+        CategoryManager cm = new CategoryManager(new EfCategoryDal());
         public ActionResult Index()
         {
             return View();
@@ -19,7 +20,7 @@ namespace MvcProjeKampi.Controllers
 
         public ActionResult GetCategoryList()
         {
-            var categoryList = cm.GetAll();
+            var categoryList = cm.GetCategoryList();
             return View(categoryList);
         }
 

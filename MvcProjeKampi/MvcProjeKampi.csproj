@@ -201,6 +201,10 @@
       <Project>{71902244-5CBD-4F74-923B-73F64A58F2CA}</Project>
       <Name>BusinessLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{0FA37AA2-1368-452D-B990-29A62AB08024}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj">
       <Project>{A288EEED-4571-4882-900C-1121CC298AA4}</Project>
       <Name>EntityLayer</Name>
