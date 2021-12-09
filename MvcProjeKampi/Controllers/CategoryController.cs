@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BusinessLayer.ValidationRules;
 using DataAccessLayer.EntityFramework;
+using FluentValidation.Results;
 
 namespace MvcProjeKampi.Controllers
 {
@@ -33,8 +35,22 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult AddCategory(Category category)
         {
-            cm.Add(category);
-            return RedirectToAction("GetCategoryList");
+            CategoryValidator categoryValidator = new CategoryValidator();
+            ValidationResult result = categoryValidator.Validate(category);
+            if (result.IsValid)
+            {
+                cm.Add(category);
+                return RedirectToAction("GetCategoryList");
+            }
+            else
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError(item.PropertyName,item.ErrorMessage);
+                }
+            }
+
+            return View();
         }        
     }
 }
