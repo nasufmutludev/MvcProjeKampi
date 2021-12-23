@@ -1,4 +1,5 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<Category>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -22,47 +23,34 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+                <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>User</th>
-                            <th>Date</th>
-                            <th>Status</th>
-                            <th>Reason</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Adı</th>
+                            <th scope="col">Durum</th>
+                            <th scope="col">İşlemler</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <td>183</td>
-                            <td>John Doe</td>
-                            <td>11-7-2014</td>
-                            <td><span class="tag tag-success">Approved</span></td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                            <th scope="row">@item.ID</th>
+                            <td>@item.CategoryName</td>
+                            <td>@item.CategoryStatus</td>
+                            <td>
+                                <a href=""><button class="btn btn-success btn-xs">Güncelle</button></a>
+                                <a href="/AdminCategory/DeleteCategory/@item.ID"><button class="btn btn-danger btn-xs">Sil</button></a>
+                            </td>
                         </tr>
-                        <tr>
-                            <td>219</td>
-                            <td>Alexander Pierce</td>
-                            <td>11-7-2014</td>
-                            <td><span class="tag tag-warning">Pending</span></td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                        </tr>
-                        <tr>
-                            <td>657</td>
-                            <td>Bob Doe</td>
-                            <td>11-7-2014</td>
-                            <td><span class="tag tag-primary">Approved</span></td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                        </tr>
-                        <tr>
-                            <td>175</td>
-                            <td>Mike Doe</td>
-                            <td>11-7-2014</td>
-                            <td><span class="tag tag-danger">Denied</span></td>
-                            <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                        </tr>
+                    }
+
                     </tbody>
                 </table>
+                <div class="mt-2 mb-3">
+                    <a href="/Category/AddCategory" class="btn btn-info">Yeni Kategori</a>
+                </div>
             </div>
             <!-- /.card-body -->
         </div>

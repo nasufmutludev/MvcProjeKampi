@@ -24,6 +24,11 @@ namespace BusinessLayer.Concrete
             return _categoryDal.List();
         }
 
+        public Category GetByID(int id)
+        {
+            return _categoryDal.Get(x => x.ID == id);
+        }
+
         public void Add(Category category)
         {
             _categoryDal.Insert(category);
@@ -34,9 +39,9 @@ namespace BusinessLayer.Concrete
             _categoryDal.Update(category);
         }
 
-        public void Delete(int categoryId)
+        public void Delete(Category category)
         {
-            throw new NotImplementedException();
+            _categoryDal.Delete(category);
         }
     }
 }
