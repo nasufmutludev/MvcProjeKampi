@@ -1,0 +1,47 @@
+﻿@model EntityLayer.Concrete.Category
+@{
+    ViewBag.Title = "UpdateCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <title>UpdateCategory</title>
+</head>
+<body>
+    @using (Html.BeginForm("UpdateCategory", "AdminCategory", FormMethod.Post))
+    {
+
+    <div class="form-group">
+        @Html.Label("Categori ID")
+        @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+        <br /><br />
+        @Html.Label("Categori Adı")
+        @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+        <br /><br />
+        @Html.Label("Açıklama")
+        @Html.TextAreaFor(x => x.CategoryDescription, new { @class = "form-control" })
+        <br /><br />
+        <button class="btn btn-info">Kaydet</button>
+    </div>
+
+    }
+    @*<form class="form-group"method="post">
+            <div class="form-group">
+                <label for="text">Kategori Adı</label>
+                <input type="text" class="form-control" id="text" name="CategoryName" placeholder="Kategori Adı">
+            </div>
+            <div class="form-group">
+                <label for="text">Açıklama</label>
+                <input type="text" class="form-control" id="text" name="CategoryDescription" placeholder="Açıklama giriniz">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>*@
+</body>
+</html>
+
